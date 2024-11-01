@@ -1,5 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "htt`://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>平安喜乐!</title>     
     <link type="text/css" rel="stylesheet" href="./css/default.css">
     <script type="text/javascript" src="./css/jquery.min.js"></script>
@@ -11,50 +13,61 @@
     <script type="text/javascript" src="./css/jscex-async-powerpack.min.js"></script>
     <script type="text/javascript" src="./css/functions.js" charset="utf-8"></script>
     <script type="text/javascript" src="./css/love.js" charset="utf-8"></script>
-      <style type="text/css">
-<!--
-.STYLE1 {color: #666666}
--->
-        </style>
+    <style type="text/css">
+        .STYLE1 {color: #666666}
+    </style>
 </head>
 <body>
-    <audio autoplay>
+    <audio id="music-player">
         <source src="music/love.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
     </audio>
-        <div id="main">
-             <div id="wrap">
-                <div id="text">
-              <div id="code">
-            <font color="#FF0000">    
-<span class="say"><h1>希望小宝一直开心喔。</h1></span><br><br>
-<span class="say">希望小宝一直开心喔。</span><br> <br>    
-<span class="say">慢慢亦漫漫，</span><br><br>
-<span class="say">春来夏往，</span><br><br>
-<span class="say">秋收冬藏，</span><br><br>
-<span class="say">我们来日方长。</span><br><br>
-<span class="say">写了一遍又一遍的留在我身边，</span><br><br>
-<span class="say">可总觉得写的太差，</span>span><br><br>
-<span class="say">那些庸俗的话语好像打动不了你于是我写下</span><br><br>
-<span class="say">“希望你四季平安”</span><br><br>
-<span class="say"><span class="space"></span> -- 罗鑫--</span><br>
-<span class="say"><h1>平安喜乐!</h1></span><br>
-        </font>
-      </div>
+    <button id="play-button">Play Music</button>
+    <div id="main">
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <font color="#FF0000">    
+                        <span class="say"><h1>希望小宝一直开心喔。</h1></span><br><br>
+                        <span class="say">希望小宝一直开心喔。</span><br> <br>    
+                        <span class="say">慢慢亦漫漫，</span><br><br>
+                        <span class="say">春来夏往，</span><br><br>
+                        <span class="say">秋收冬藏，</span><br><br>
+                        <span class="say">我们来日方长。</span><br><br>
+                        <span class="say">写了一遍又一遍的留在我身边，</span><br><br>
+                        <span class="say">可总觉得写的太差，</span><br><br>
+                        <span class="say">那些庸俗的话语好像打动不了你于是我写下</span><br><br>
+                        <span class="say">“希望你四季平安”</span><br><br>
+                        <span class="say"><span class="space"></span> -- 罗鑫--</span><br>
+                        <span class="say"><h1>平安喜乐!</h1></span><br>
+                    </font>
                 </div>
-                <div id="clock-box">
-                    <!-- <span class="STYLE1"></span><font color="#33CC00">距离我喜欢你，</font>
-<span class="STYLE1">已经是……</span> -->
-<span class="STYLE1"></span>
-<font color="#33CC00"></font>
-<span class="STYLE1"></span>
-                  <!-- <div id="clock"></div> -->
-              </div>
-                <canvas id="canvas" width="1100" height="680"></canvas>
             </div>
-            
+            <div id="clock-box">
+                <!-- <span class="STYLE1"></span><font color="#33CC00">距离我喜欢你，</font>
+                <span class="STYLE1">已经是……</span> -->
+                <span class="STYLE1"></span>
+                <font color="#33CC00"></font>
+                <span class="STYLE1"></span>
+                <!-- <div id="clock"></div> -->
+            </div>
+            <canvas id="canvas" width="1100" height="680"></canvas>
         </div>
-    
+    </div>
     <script>
+        $(document).ready(function() {
+            var audio = document.getElementById('music-player');
+
+            // 自动播放音乐
+            audio.play().catch(function(error) {
+                console.log('Auto-play was prevented. User interaction required.');
+            });
+
+            // 用户点击按钮播放音乐
+            $('#play-button').click(function() {
+                audio.play();
+            });
+        });
     </script>
 
     <script>
@@ -63,7 +76,8 @@
     
         if (!canvas[0].getContext) {
             $("#error").show();
-            return false;        }
+            return false;
+        }
 
         var width = canvas.width();
         var height = canvas.height();        
@@ -79,19 +93,8 @@
                 [535, 680, 570, 250, 500, 200, 30, 100, [
                     [540, 500, 455, 417, 340, 400, 13, 100, [
                         [450, 435, 434, 430, 394, 395, 2, 40]
-                    ]],
-                    [550, 445, 600, 356, 680, 345, 12, 100, [
-                        [578, 400, 648, 409, 661, 426, 3, 80]
-                    ]],
-                    [539, 281, 537, 248, 534, 217, 3, 40],
-                    [546, 397, 413, 247, 328, 244, 9, 80, [
-                        [427, 286, 383, 253, 371, 205, 2, 40],
-                        [498, 345, 435, 315, 395, 330, 4, 60]
-                    ]],
-                    [546, 357, 608, 252, 678, 221, 6, 100, [
-                        [590, 293, 646, 277, 648, 271, 2, 80]
                     ]]
-                ]] 
+                ]]
             ],
             bloom: {
                 num: 700,
@@ -103,7 +106,7 @@
                 height: 5,
                 speed: 10,
             }
-        }
+        };
 
         var tree = new Tree(canvas[0], width, height, opts);
         var seed = tree.seed;
@@ -145,14 +148,14 @@
 
         var growAnimate = eval(Jscex.compile("async", function () {
             do {
-              tree.grow();
+                tree.grow();
                 $await(Jscex.Async.sleep(10));
             } while (tree.canGrow());
         }));
 
         var flowAnimate = eval(Jscex.compile("async", function () {
             do {
-              tree.flower(2);
+                tree.flower(2);
                 $await(Jscex.Async.sleep(10));
             } while (tree.canFlower());
         }));
@@ -184,14 +187,14 @@
         }));
 
         var textAnimate = eval(Jscex.compile("async", function () {
-        var together = new Date();
-        together.setFullYear(2009,10,23 );      //时间年月日
-        together.setHours(16);            //小时  
-        together.setMinutes(53);          //分钟
-        together.setSeconds(0);         //秒前一位
-        together.setMilliseconds(2);        //秒第二位
+            var together = new Date();
+            together.setFullYear(2009, 10, 23);      // 时间年月日
+            together.setHours(16);            // 小时  
+            together.setMinutes(53);          // 分钟
+            together.setSeconds(0);           // 秒前一位
+            together.setMilliseconds(2);      // 秒第二位
 
-        $("#code").show().typewriter();
+            $("#code").show().typewriter();
             $("#clock-box").fadeIn(500);
             while (true) {
                 timeElapse(together);
@@ -213,5 +216,5 @@
         runAsync().start();
     })();
     </script>
-
-    </body></html>
+</body>
+</html>
